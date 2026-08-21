@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lịch sử Đảng (1975-1986) - Bài học và Quyết sách</title>
+    <meta name="description" content="Trang web ôn tập chuyên đề: Lãnh đạo cả nước xây dựng chủ nghĩa xã hội và bảo vệ Tổ quốc (1975-1986).">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Merriweather:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header class="app-header">
+        <div class="header-content">
+            <h1>Đảng Cộng sản Việt Nam (1975-1986)</h1>
+            <p>Lãnh đạo cả nước xây dựng chủ nghĩa xã hội và bảo vệ Tổ quốc</p>
+        </div>
+        <nav class="sticky-nav">
+            <ul id="nav-list">
+                <li><button class="nav-btn active" data-tab="tab-overview">Tổng quan</button></li>
+                <li><button class="nav-btn" data-tab="tab-quiz">Câu hỏi ôn tập</button></li>
+                <li><button class="nav-btn" data-tab="tab-game">Decision Game</button></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="app-main">
+        <!-- TAB TỔNG QUAN -->
+        <section id="tab-overview" class="tab-content active">
+            <div class="container">
+                <h2 class="section-title">Dòng Thời Gian Lịch Sử (1975-1986)</h2>
+                
+                <div class="timeline-container">
+                    <div class="timeline-track" id="timeline-track">
+                        <!-- Timeline nodes will be injected here -->
+                    </div>
+                </div>
+
+                <div id="timeline-detail-box" class="timeline-detail hidden">
+                    <h3 id="td-title"></h3>
+                    <p id="td-date" class="date-badge"></p>
+                    <p id="td-content"></p>
+                    <button class="btn-close" onclick="closeTimelineDetail()">Đóng</button>
+                </div>
+
+                <div class="overview-content">
+                    <div id="overview-part1" class="overview-part"></div>
+                    <div id="overview-part2" class="overview-part"></div>
+                </div>
+                
+                <div class="logic-tree-container">
+                    <h3>Sơ Đồ Tổng Kết - Mạch Logic Xuyên Suốt</h3>
+                    <div class="logic-tree" id="logic-tree">
+                        <!-- Logic tree will be injected here -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TAB CÂU HỎI ÔN TẬP -->
+        <section id="tab-quiz" class="tab-content">
+            <div class="container quiz-container">
+                <h2 class="section-title">Câu Hỏi Ôn Tập Trắc Nghiệm</h2>
+                <div id="quiz-area">
+                    <!-- Quiz questions will be injected here -->
+                </div>
+                <div id="quiz-result" class="hidden">
+                    <h3>Kết quả của bạn: <span id="score-display">0/10</span></h3>
+                    <button class="btn-primary" onclick="restartQuiz()">Làm lại bài thi</button>
+                    <button class="btn-secondary" onclick="showAllAnswers()">Xem toàn bộ câu hỏi và đáp án</button>
+                </div>
+                <div id="all-answers-list" class="hidden all-answers-list">
+                    <!-- All answers injected here -->
+                </div>
+            </div>
+        </section>
+
+        <!-- TAB DECISION GAME -->
+        <section id="tab-game" class="tab-content">
+            <div class="container game-container">
+                <div class="game-header">
+                    <h2 class="section-title">Trò Chơi Quyết Sách: "Ba Bước Đột Phá"</h2>
+                    
+                    <div class="progress-panel">
+                        <div class="stat-item">
+                            <div class="stat-label">
+                                <span>🟢 Đổi mới tư duy</span>
+                                <span id="val-doimoi">0/30</span>
+                            </div>
+                            <div class="progress-bar-bg"><div id="bar-doimoi" class="progress-bar bar-green" style="width: 0%"></div></div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-label">
+                                <span>🟡 Ổn định kinh tế – đời sống</span>
+                                <span id="val-ondinh">10/20</span>
+                            </div>
+                            <div class="progress-bar-bg"><div id="bar-ondinh" class="progress-bar bar-yellow" style="width: 50%"></div></div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-label">
+                                <span>🔵 Niềm tin của thực tiễn cơ sở</span>
+                                <span id="val-niemtin">5/20</span>
+                            </div>
+                            <div class="progress-bar-bg"><div id="bar-niemtin" class="progress-bar bar-blue" style="width: 25%"></div></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="game-screens">
+                    <!-- Intro Screen -->
+                    <div id="screen-intro" class="game-screen active">
+                        <p class="game-context" id="game-context-text"></p>
+                        <div class="startup-question">
+                            <p id="game-startup-q"></p>
+                            <div class="options-container" id="game-startup-options"></div>
+                        </div>
+                    </div>
+
+                    <!-- Card Screen -->
+                    <div id="screen-card" class="game-screen hidden">
+                        <div class="card-box">
+                            <h3 id="card-title" class="card-title"></h3>
+                            <p id="card-situation" class="card-situation"></p>
+                            <div class="options-container" id="card-options"></div>
+                        </div>
+                    </div>
+
+                    <!-- Debrief Screen -->
+                    <div id="screen-debrief" class="game-screen hidden">
+                        <div class="debrief-box">
+                            <h3>Hệ quả lựa chọn</h3>
+                            <div id="debrief-deltas" class="debrief-deltas"></div>
+                            <div class="debrief-text">
+                                <strong>Người dẫn game:</strong>
+                                <p id="debrief-content"></p>
+                            </div>
+                            <button class="btn-primary" id="btn-next-card">Tiếp tục</button>
+                        </div>
+                    </div>
+
+                    <!-- Summary Screen -->
+                    <div id="screen-summary" class="game-screen hidden">
+                        <h3>Tổng Kết Dòng Thời Gian Tích Lũy</h3>
+                        <div class="summary-timeline" id="summary-timeline-list"></div>
+                        
+                        <div class="evaluation-box">
+                            <h3>Xếp Loại Lãnh Đạo</h3>
+                            <div id="eval-result" class="eval-result"></div>
+                            <p id="eval-desc"></p>
+                        </div>
+                        
+                        <div class="reflection-box">
+                            <h4>Suy ngẫm</h4>
+                            <ul>
+                                <li>Nếu bỏ qua bước đột phá 8-1979 (chọn phương án giữ nguyên cơ chế cũ), liệu Đại hội VI có thể diễn ra đúng như lịch sử vào 12-1986 không?</li>
+                                <li>Vì sao một chính sách "thất bại" như điều chỉnh giá – lương – tiền (1985) vẫn được xem là một bước đột phá chứ không phải một sai lầm đơn thuần?</li>
+                                <li>Điểm chung giữa ba bước đột phá (8-1979, 6-1985, 8-1986) là gì?</li>
+                            </ul>
+                        </div>
+                        <button class="btn-primary" onclick="restartGame()">Chơi lại</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="app-footer">
+        <p>Học phần Lịch sử Đảng Cộng sản Việt Nam - Tài liệu học tập và tương tác</p>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="js/data.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
